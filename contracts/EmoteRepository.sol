@@ -7,7 +7,7 @@ import "@rmrk-team/evm-contracts/contracts/RMRK/extension/emotable/IRMRKEmoteTra
 /**
  * @title EmoteRepository
  * @author RMRK team
- * @notice Smart contract of the RMRK Emotable module.
+ * @notice The user interface is available @ https://emotes.app/.
  */
 contract EmoteRepository is IRMRKEmoteTracker {
     // Used to avoid double emoting and control undoing
@@ -54,7 +54,7 @@ contract EmoteRepository is IRMRKEmoteTracker {
         uint256 tokenId,
         bytes4 emoji,
         bool state
-    ) public override {
+    ) public {
         bool currentVal = _emotesUsedByEmoter[msg.sender][collection][tokenId][
             emoji
         ] == 1;
