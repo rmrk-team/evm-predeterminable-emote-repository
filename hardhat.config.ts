@@ -32,6 +32,32 @@ const config: HardhatUserConfig = {
       accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
       gasPrice: 1000000000,
     },
+    moonriver: {
+      url: 'https://moonriver.api.onfinality.io/public',
+      chainId: 1285,
+      accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
+      gasPrice: 1300000000,
+    },
+    arbitrumGoerli: {
+      url: process.env.ARBITRUM_GOERLI_URL,
+      accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
+    },
+    polygon: {
+      url: process.env.POLYGON_URL,
+      accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
+      gasPrice: 200000000000,
+    },
+    mainnet: {
+      url: process.env.MAINNET_URL,
+      accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
+      gasPrice: 14000000000,
+    },
+    moonbeam: {
+      url: 'https://rpc.api.moonbeam.network',
+      chainId: 1284,
+      accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
+      gasPrice: 145000000000,
+    },
   },
   etherscan: {
     apiKey: {
@@ -39,6 +65,11 @@ const config: HardhatUserConfig = {
       sepolia: process.env.SEPOLIA_ETHERSCAN_API_KEY || "",
       polygonMumbai: process.env.MUMBAI_ETHERSCAN_API_KEY || "",
       moonbaseAlpha: process.env.MOONBEAM_MOONSCAN_APIKEY || "",
+      moonriver: process.env.MOONRIVER_MOONSCAN_APIKEY || "",
+      arbitrumGoerli: process.env.ARBITRUM_ARBISCAN_APIKEY || "",
+      polygon: process.env.POLYGON_ETHERSCAN_API_KEY || "",
+      mainnet: process.env.MAINNET_ETHERSCAN_API_KEY || "",
+      moonbeam: process.env.MOONBEAM_MOONSCAN_APIKEY || "",
     }
   },
 };

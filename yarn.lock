@@ -666,10 +666,9 @@
   resolved "https://registry.yarnpkg.com/@openzeppelin/contracts/-/contracts-4.8.2.tgz#d815ade0027b50beb9bcca67143c6bcc3e3923d6"
   integrity sha512-kEUOgPQszC0fSYWpbh2kT94ltOJwj1qfT2DWo+zVttmGmf97JZ99LspePNaeeaLhCImaHVeBbjaQFZQn7+Zc5g==
 
-"@rmrk-team/evm-contracts@^0.27.1":
-  version "0.27.1"
-  resolved "https://registry.yarnpkg.com/@rmrk-team/evm-contracts/-/evm-contracts-0.27.1.tgz#73489f44661aad9cb069c5cdc47a66de2a2134fc"
-  integrity sha512-YwRzkq/2BBS8efcFc6064jNbDywJziWGKLxREfIF7XlE5R0HUF3y46JEXdOYOuhcUcvwVgTcv3gyaxy/hFzITA==
+"@rmrk-team/evm-contracts@https://github.com/rmrk-team/evm#refs/heads/v2":
+  version "1.2.1"
+  resolved "https://github.com/rmrk-team/evm#bf0c4df177f03619e5cf2d672d8730de2d3cc28b"
   dependencies:
     "@openzeppelin/contracts" "^4.6.0"
 
