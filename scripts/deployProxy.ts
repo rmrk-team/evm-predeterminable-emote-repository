@@ -31,10 +31,10 @@ async function main() {
 
     // // This is used to find the saltHex that will generate the create2 address that starts with 0x3110735
     let saltHex = ethers.utils.id("0");
-    // // i used to generate the saltHex resulting in 0x31107354b61A0412E722455A771bC462901668eA is 15587301
+    // // i used to generate the saltHex resulting in 0x31107356a47DD65e832676C1FCBECb0B7C075f5B is 96591818
     // // The saltHex is generated using ethers.utils.id(i.toString())
-    // // The saltHex is 0x01d5f8344b54b86c283e72ccd7a83d4531817d6d761f6d0b2bc5d2770acf4aa9
-    for(let i = 2645034; i < 1000000000; i++) {
+    // // The saltHex is 0x36b1f6b73e7998efb2000923caa427ef537ef0ccae81b19a2fd0ea72b462e915
+    for(let i = 0; i < 1000000000; i++) {
         // console.log(`Salt: ${saltHex}`);
         const create2Addr = await create2Address(deployProxy.address, saltHex, initCode);
         // console.log(`Precomputed create2 Address: ${create2Addr}`);
@@ -50,7 +50,7 @@ async function main() {
         saltHex = ethers.utils.id((i + 1).toString());
     }
 
-    // const saltHex = ethers.utils.id("15587301");
+    // const saltHex = ethers.utils.id("96591818");
 
     const repositoryDeploy = await deployProxy.connect(deployer).deployContract(initCode, saltHex);
     const transactionReceipt = await repositoryDeploy.wait();
