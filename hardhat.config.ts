@@ -15,15 +15,15 @@ const config: HardhatUserConfig = {
   },
   networks: {
     goerli: {
-      url: process.env.GOERLI_URL,
+      url: process.env.GOERLI_URL || '',
       accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
     },
     sepolia: {
-      url: process.env.SEPOLIA_URL,
+      url: process.env.SEPOLIA_URL || '',
       accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
     },
     mumbai: {
-      url: process.env.MUMBAI_URL,
+      url: process.env.MUMBAI_URL || '',
       accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
     },
     moonbaseAlpha: {
@@ -39,16 +39,16 @@ const config: HardhatUserConfig = {
       gasPrice: 1300000000,
     },
     arbitrumGoerli: {
-      url: process.env.ARBITRUM_GOERLI_URL,
+      url: process.env.ARBITRUM_GOERLI_URL || '',
       accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
     },
     polygon: {
-      url: process.env.POLYGON_URL,
+      url: process.env.POLYGON_URL || '',
       accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
       gasPrice: 200000000000,
     },
     mainnet: {
-      url: process.env.MAINNET_URL,
+      url: process.env.MAINNET_URL || '',
       accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
       gasPrice: 14000000000,
     },
