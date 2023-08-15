@@ -21,8 +21,8 @@ async function main() {
     // await fundedAddress.sendTransaction({ to: deployer.address, value: ethers.utils.parseEther("1.0") });
 
     const DeployProxy = await ethers.getContractFactory("DeployProxy");
-    const deployProxy = await DeployProxy.connect(deployer).deploy(); // Used for the networks where the deploy proxy is not deployed to
-    // const deployProxy = DeployProxy.attach('0xe68fe566f9585c08F0123F92f111F6a3c00f6660'); // Used for the networks where the deploy proxy is already deployed to
+    // const deployProxy = await DeployProxy.connect(deployer).deploy(); // Used for the networks where the deploy proxy is not deployed to
+    const deployProxy = DeployProxy.attach('0xe68fe566f9585c08F0123F92f111F6a3c00f6660'); // Used for the networks where the deploy proxy is already deployed to
 
     await deployProxy.deployed();
     console.log(`DeployProxy deployed to: ${deployProxy.address}`);
@@ -49,7 +49,7 @@ async function main() {
     //     saltHex = ethers.utils.id((i + 1).toString());
     // }
 
-    const saltHex = ethers.utils.id("15587301");
+    const saltHex = ethers.utils.id("96591818");
 
     const repositoryDeploy = await deployProxy.connect(deployer).deployContract(initCode, saltHex);
     const transactionReceipt = await repositoryDeploy.wait();

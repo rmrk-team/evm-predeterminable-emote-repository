@@ -58,6 +58,10 @@ const config: HardhatUserConfig = {
       accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
       gasPrice: 145000000000,
     },
+    base: {
+      url: process.env.BASE_URL,
+      accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
+    }
   },
   etherscan: {
     apiKey: {
@@ -70,7 +74,18 @@ const config: HardhatUserConfig = {
       polygon: process.env.POLYGON_ETHERSCAN_API_KEY || "",
       mainnet: process.env.MAINNET_ETHERSCAN_API_KEY || "",
       moonbeam: process.env.MOONBEAM_MOONSCAN_APIKEY || "",
-    }
+      base: process.env.BASE_BASESCAN_APIKEY || "",
+    },
+    customChains: [
+      {
+        network: "base",
+        chainId: 8453,
+        urls: {
+          apiURL: "https://api.basescan.org/api",
+          browserURL: "https://basescan.org"
+        }
+      }
+    ]
   },
 };
 
