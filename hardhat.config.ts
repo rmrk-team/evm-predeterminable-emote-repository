@@ -2,11 +2,21 @@ import * as dotenv from "dotenv";
 
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
+import "hardhat-contract-sizer";
 
 dotenv.config();
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.18",
+  solidity: {
+    version: "0.8.21",
+    settings: {
+      evmVersion: "london",
+      optimizer: {
+        enabled: true,
+        runs: 1
+      }
+    },
+  },
   gasReporter: {
     currency: "EUR",
     coinmarketcap: process.env.COINMARKETCAP_API_KEY,
