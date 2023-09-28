@@ -6,88 +6,107 @@ import "@nomicfoundation/hardhat-toolbox";
 dotenv.config();
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.21",
-  gasReporter: {
-    currency: "EUR",
-    coinmarketcap: process.env.COINMARKETCAP_API_KEY,
-    gasPriceApi:
-      "https://api.etherscan.io/api?module=proxy&action=eth_gasPrice",
-    enabled: true,
+  solidity: {
+    version: "0.8.21",
+    settings: {
+      evmVersion: "london",
+      optimizer: {
+        enabled: true,
+        runs: 100,
+      },
+    },
   },
   networks: {
-    goerli: {
-      url: process.env.GOERLI_URL || "https://goerli.base.org",
-      accounts:
-        process.env.REPOSITORY_DEPLOYER !== undefined
-          ? [process.env.REPOSITORY_DEPLOYER]
-          : [],
-    },
-    sepolia: {
-      url: process.env.SEPOLIA_URL || "https://rpc.sepolia.dev",
-      accounts:
-        process.env.REPOSITORY_DEPLOYER !== undefined
-          ? [process.env.REPOSITORY_DEPLOYER]
-          : [],
-    },
-    mumbai: {
-      url: process.env.MUMBAI_URL || "https://rpc-mumbai.maticvigil.com",
-      accounts:
-        process.env.REPOSITORY_DEPLOYER !== undefined
-          ? [process.env.REPOSITORY_DEPLOYER]
-          : [],
-    },
     moonbaseAlpha: {
-      url: "https://moonbeam-alpha.api.onfinality.io/public",
+      url: process.env.MOONBASE_URL || "https://rpc.testnet.moonbeam.network",
       chainId: 1287,
       accounts:
         process.env.REPOSITORY_DEPLOYER !== undefined
           ? [process.env.REPOSITORY_DEPLOYER]
           : [],
-      gasPrice: 1000000000,
+      gasPrice: 1100000000,
+    },
+    sepolia: {
+      url: process.env.SEPOLIA_URL || "https://rpc.sepolia.dev",
+      chainId: 11155111,
+      accounts:
+        process.env.REPOSITORY_DEPLOYER !== undefined
+          ? [process.env.REPOSITORY_DEPLOYER]
+          : [],
+    },
+    polygonMumbai: {
+      url: process.env.MUMBAI_URL || "https://rpc-mumbai.maticvigil.com",
+      chainId: 80001,
+      accounts:
+        process.env.REPOSITORY_DEPLOYER !== undefined
+          ? [process.env.REPOSITORY_DEPLOYER]
+          : [],
+      gasPrice: 2500000000,
+    },
+    baseGoerli: {
+      chainId: 84531,
+      url: process.env.BASE_GOERLI_URL || "https://goerli.base.org",
+      accounts:
+        process.env.REPOSITORY_DEPLOYER !== undefined
+          ? [process.env.REPOSITORY_DEPLOYER]
+          : [],
+      gasPrice: 2000000000,
+    },
+    shibuya: {
+      chainId: 81,
+      url: process.env.SHIBUYA_URL || "https://evm.shibuya.astar.network",
+      accounts:
+        process.env.REPOSITORY_DEPLOYER !== undefined
+          ? [process.env.REPOSITORY_DEPLOYER]
+          : [],
     },
     moonriver: {
-      url: "https://moonriver.api.onfinality.io/public",
+      url:
+        process.env.MOONRIVER_URL ||
+        "https://rpc.api.moonriver.moonbeam.network",
       chainId: 1285,
       accounts:
         process.env.REPOSITORY_DEPLOYER !== undefined
           ? [process.env.REPOSITORY_DEPLOYER]
           : [],
-      gasPrice: 1300000000,
-    },
-    arbitrumGoerli: {
-      url: process.env.ARBITRUM_GOERLI_URL || "",
-      accounts:
-        process.env.REPOSITORY_DEPLOYER !== undefined
-          ? [process.env.REPOSITORY_DEPLOYER]
-          : [],
-    },
-    polygon: {
-      url: process.env.POLYGON_URL,
-      accounts:
-        process.env.REPOSITORY_DEPLOYER !== undefined
-          ? [process.env.REPOSITORY_DEPLOYER]
-          : [],
-      gasPrice: 200000000000,
-    },
-    mainnet: {
-      url: process.env.MAINNET_URL || "https://eth.drpc.org",
-      accounts:
-        process.env.REPOSITORY_DEPLOYER !== undefined
-          ? [process.env.REPOSITORY_DEPLOYER]
-          : [],
-      gasPrice: 14000000000,
     },
     moonbeam: {
-      url: "https://rpc.api.moonbeam.network",
+      url: process.env.MOONBEAM_URL || "https://rpc.api.moonbeam.network",
       chainId: 1284,
       accounts:
         process.env.REPOSITORY_DEPLOYER !== undefined
           ? [process.env.REPOSITORY_DEPLOYER]
           : [],
-      gasPrice: 145000000000,
+    },
+    mainnet: {
+      url: process.env.ETHEREUM_URL || "https://eth.drpc.org",
+      chainId: 1,
+      accounts:
+        process.env.REPOSITORY_DEPLOYER !== undefined
+          ? [process.env.REPOSITORY_DEPLOYER]
+          : [],
+      gasPrice: 12000000000,
+    },
+    polygon: {
+      url: process.env.POLYGON_URL || "https://polygon.drpc.org",
+      chainId: 137,
+      accounts:
+        process.env.REPOSITORY_DEPLOYER !== undefined
+          ? [process.env.REPOSITORY_DEPLOYER]
+          : [],
+      gasPrice: 120000000000,
     },
     base: {
-      url: process.env.BASE_URL,
+      chainId: 8453,
+      url: process.env.BASE_URL || "https://developer-access-mainnet.base.org",
+      accounts:
+        process.env.REPOSITORY_DEPLOYER !== undefined
+          ? [process.env.REPOSITORY_DEPLOYER]
+          : [],
+    },
+    astar: {
+      url: process.env.ASTAR_URL || "https://evm.astar.network",
+      chainId: 592,
       accounts:
         process.env.REPOSITORY_DEPLOYER !== undefined
           ? [process.env.REPOSITORY_DEPLOYER]
@@ -96,24 +115,49 @@ const config: HardhatUserConfig = {
   },
   etherscan: {
     apiKey: {
-      goerli: process.env.GOERLI_ETHERSCAN_API_KEY || "",
-      sepolia: process.env.SEPOLIA_ETHERSCAN_API_KEY || "",
-      polygonMumbai: process.env.MUMBAI_ETHERSCAN_API_KEY || "",
-      moonbaseAlpha: process.env.MOONBEAM_MOONSCAN_APIKEY || "",
-      moonriver: process.env.MOONRIVER_MOONSCAN_APIKEY || "",
-      arbitrumGoerli: process.env.ARBITRUM_ARBISCAN_APIKEY || "",
-      polygon: process.env.POLYGON_ETHERSCAN_API_KEY || "",
-      mainnet: process.env.MAINNET_ETHERSCAN_API_KEY || "",
-      moonbeam: process.env.MOONBEAM_MOONSCAN_APIKEY || "",
-      base: process.env.BASE_BASESCAN_APIKEY || "",
+      moonbaseAlpha: process.env.MOONSCAN_APIKEY || "", // Moonbeam Moonscan API Key
+      sepolia: process.env.ETHERSCAN_API_KEY || "", // Sepolia Etherscan API Key
+      polygonMumbai: process.env.POLYGONSCAN_API_KEY || "", // Polygon Mumbai Etherscan API Key
+      baseGoerli: process.env.BASESCAN_API_KEY || "", // Base Goerli Etherscan API Key
+      shibuya: process.env.SHIBUYA_BLOCKSCOUT_API_KEY || "", // Shibuya blockscout API Key
+      moonriver: process.env.MOONSCAN_APIKEY || "", // Moonriver Moonscan API Key
+      moonbeam: process.env.MOONSCAN_APIKEY || "", // Moonbeam Moonscan API Key
+      mainnet: process.env.ETHERSCAN_API_KEY || "", // Ethereum Etherscan API Key
+      polygon: process.env.POLYGONSCAN_API_KEY || "", // Polygon Etherscan API Key
+      base: process.env.BASESCAN_API_KEY || "", // Base Etherscan API Key
+      astar: process.env.ASTAR_BLOCKSCOUT_API_KEY || "", // Astar blockscout API Key
     },
     customChains: [
+      {
+        network: "baseGoerli",
+        chainId: 84531,
+        urls: {
+          apiURL: "https://api-goerli.basescan.org/api",
+          browserURL: "https://goerli.basescan.org",
+        },
+      },
       {
         network: "base",
         chainId: 8453,
         urls: {
           apiURL: "https://api.basescan.org/api",
           browserURL: "https://basescan.org",
+        },
+      },
+      {
+        network: "shibuya",
+        chainId: 81,
+        urls: {
+          apiURL: "https://blockscout.com/shibuya/api",
+          browserURL: "https://blockscout.com/shibuya",
+        },
+      },
+      {
+        network: "astar",
+        chainId: 592,
+        urls: {
+          apiURL: "https://blockscout.com/astar/api",
+          browserURL: "https://blockscout.com/astar/",
         },
       },
     ],
