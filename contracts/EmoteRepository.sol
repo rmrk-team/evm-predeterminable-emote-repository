@@ -9,11 +9,11 @@ error ExpiredPresignedEmote();
 error InvalidSignature();
 
 /**
- * @title RMRKEmotesRepository
+ * @title EmoteRepository
  * @author RMRK team
- * @notice Smart contract of the RMRK Emotes repository.
+ * @notice The user interface is available @ https://emotes.app/.
  */
-contract RMRKEmotesRepository is IERC7409 {
+contract EmoteRepository is IERC7409 {
     bytes32 public immutable DOMAIN_SEPARATOR =
         keccak256(
             abi.encode(
