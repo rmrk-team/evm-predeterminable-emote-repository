@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "Apache-2.0",
   "dependencies": {
-    "@rmrk-team/evm-contracts": "https://github.com/rmrk-team/evm#refs/heads/v2",
+    "@rmrk-team/evm-contracts": "^2.1.0",
     "hardhat": "^2.13.0"
   },
   "devDependencies": {

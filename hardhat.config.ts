@@ -6,62 +6,93 @@ import "@nomicfoundation/hardhat-toolbox";
 dotenv.config();
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.18",
+  solidity: "0.8.21",
   gasReporter: {
     currency: "EUR",
     coinmarketcap: process.env.COINMARKETCAP_API_KEY,
-    gasPriceApi: "https://api.etherscan.io/api?module=proxy&action=eth_gasPrice",
-    enabled: true
+    gasPriceApi:
+      "https://api.etherscan.io/api?module=proxy&action=eth_gasPrice",
+    enabled: true,
   },
   networks: {
     goerli: {
-      url: process.env.GOERLI_URL,
-      accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
+      url: process.env.GOERLI_URL || "https://goerli.base.org",
+      accounts:
+        process.env.REPOSITORY_DEPLOYER !== undefined
+          ? [process.env.REPOSITORY_DEPLOYER]
+          : [],
     },
     sepolia: {
-      url: process.env.SEPOLIA_URL,
-      accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
+      url: process.env.SEPOLIA_URL || "https://rpc.sepolia.dev",
+      accounts:
+        process.env.REPOSITORY_DEPLOYER !== undefined
+          ? [process.env.REPOSITORY_DEPLOYER]
+          : [],
     },
     mumbai: {
-      url: process.env.MUMBAI_URL,
-      accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
+      url: process.env.MUMBAI_URL || "https://rpc-mumbai.maticvigil.com",
+      accounts:
+        process.env.REPOSITORY_DEPLOYER !== undefined
+          ? [process.env.REPOSITORY_DEPLOYER]
+          : [],
     },
     moonbaseAlpha: {
-      url: 'https://moonbeam-alpha.api.onfinality.io/public',
+      url: "https://moonbeam-alpha.api.onfinality.io/public",
       chainId: 1287,
-      accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
+      accounts:
+        process.env.REPOSITORY_DEPLOYER !== undefined
+          ? [process.env.REPOSITORY_DEPLOYER]
+          : [],
       gasPrice: 1000000000,
     },
     moonriver: {
-      url: 'https://moonriver.api.onfinality.io/public',
+      url: "https://moonriver.api.onfinality.io/public",
       chainId: 1285,
-      accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
+      accounts:
+        process.env.REPOSITORY_DEPLOYER !== undefined
+          ? [process.env.REPOSITORY_DEPLOYER]
+          : [],
       gasPrice: 1300000000,
     },
     arbitrumGoerli: {
-      url: process.env.ARBITRUM_GOERLI_URL,
-      accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
+      url: process.env.ARBITRUM_GOERLI_URL || "",
+      accounts:
+        process.env.REPOSITORY_DEPLOYER !== undefined
+          ? [process.env.REPOSITORY_DEPLOYER]
+          : [],
     },
     polygon: {
       url: process.env.POLYGON_URL,
-      accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
+      accounts:
+        process.env.REPOSITORY_DEPLOYER !== undefined
+          ? [process.env.REPOSITORY_DEPLOYER]
+          : [],
       gasPrice: 200000000000,
     },
     mainnet: {
-      url: process.env.MAINNET_URL,
-      accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
+      url: process.env.MAINNET_URL || "https://eth.drpc.org",
+      accounts:
+        process.env.REPOSITORY_DEPLOYER !== undefined
+          ? [process.env.REPOSITORY_DEPLOYER]
+          : [],
       gasPrice: 14000000000,
     },
     moonbeam: {
-      url: 'https://rpc.api.moonbeam.network',
+      url: "https://rpc.api.moonbeam.network",
       chainId: 1284,
-      accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
+      accounts:
+        process.env.REPOSITORY_DEPLOYER !== undefined
+          ? [process.env.REPOSITORY_DEPLOYER]
+          : [],
       gasPrice: 145000000000,
     },
     base: {
       url: process.env.BASE_URL,
-      accounts: process.env.REPOSITORY_DEPLOYER !== undefined ? [process.env.REPOSITORY_DEPLOYER] : [],
-    }
+      accounts:
+        process.env.REPOSITORY_DEPLOYER !== undefined
+          ? [process.env.REPOSITORY_DEPLOYER]
+          : [],
+    },
   },
   etherscan: {
     apiKey: {
@@ -82,10 +113,10 @@ const config: HardhatUserConfig = {
         chainId: 8453,
         urls: {
           apiURL: "https://api.basescan.org/api",
-          browserURL: "https://basescan.org"
-        }
-      }
-    ]
+          browserURL: "https://basescan.org",
+        },
+      },
+    ],
   },
 };
 
