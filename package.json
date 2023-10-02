@@ -5,7 +5,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@rmrk-team/evm-contracts": "^2.1.0",
-    "hardhat": "^2.13.0"
+    "hardhat": "^2.13.0",
+    "hardhat-contract-sizer": "^2.10.0"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.4.7",
@@ -23,7 +24,7 @@
     "chai": "^4.2.0",
     "dotenv": "^16.0.3",
     "ethers": "^5.4.7",
-    "hardhat-gas-reporter": "^1.0.8",
+    "hardhat-gas-reporter": "^1.0.9",
     "solidity-coverage": "^0.8.0",
     "ts-node": ">=8.0.0",
     "typechain": "^8.1.0",

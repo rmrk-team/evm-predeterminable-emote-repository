@@ -2,6 +2,8 @@ import * as dotenv from "dotenv";
 
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
+import "hardhat-gas-reporter";
+import "./tasks/calculateSalt";
 
 dotenv.config();
 
@@ -21,44 +23,35 @@ const config: HardhatUserConfig = {
       url: process.env.MOONBASE_URL || "https://rpc.testnet.moonbeam.network",
       chainId: 1287,
       accounts:
-        process.env.REPOSITORY_DEPLOYER !== undefined
-          ? [process.env.REPOSITORY_DEPLOYER]
-          : [],
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
       gasPrice: 1100000000,
     },
     sepolia: {
       url: process.env.SEPOLIA_URL || "https://rpc.sepolia.dev",
       chainId: 11155111,
       accounts:
-        process.env.REPOSITORY_DEPLOYER !== undefined
-          ? [process.env.REPOSITORY_DEPLOYER]
-          : [],
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
     },
     polygonMumbai: {
       url: process.env.MUMBAI_URL || "https://rpc-mumbai.maticvigil.com",
       chainId: 80001,
       accounts:
-        process.env.REPOSITORY_DEPLOYER !== undefined
-          ? [process.env.REPOSITORY_DEPLOYER]
-          : [],
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
       gasPrice: 2500000000,
     },
     baseGoerli: {
       chainId: 84531,
       url: process.env.BASE_GOERLI_URL || "https://goerli.base.org",
       accounts:
-        process.env.REPOSITORY_DEPLOYER !== undefined
-          ? [process.env.REPOSITORY_DEPLOYER]
-          : [],
-      gasPrice: 2000000000,
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+      gasPrice: 20000000000,
     },
     shibuya: {
       chainId: 81,
       url: process.env.SHIBUYA_URL || "https://evm.shibuya.astar.network",
       accounts:
-        process.env.REPOSITORY_DEPLOYER !== undefined
-          ? [process.env.REPOSITORY_DEPLOYER]
-          : [],
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+      gasPrice: 1000000000,
     },
     moonriver: {
       url:
@@ -66,51 +59,40 @@ const config: HardhatUserConfig = {
         "https://rpc.api.moonriver.moonbeam.network",
       chainId: 1285,
       accounts:
-        process.env.REPOSITORY_DEPLOYER !== undefined
-          ? [process.env.REPOSITORY_DEPLOYER]
-          : [],
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
     },
     moonbeam: {
       url: process.env.MOONBEAM_URL || "https://rpc.api.moonbeam.network",
       chainId: 1284,
       accounts:
-        process.env.REPOSITORY_DEPLOYER !== undefined
-          ? [process.env.REPOSITORY_DEPLOYER]
-          : [],
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
     },
     mainnet: {
       url: process.env.ETHEREUM_URL || "https://eth.drpc.org",
       chainId: 1,
       accounts:
-        process.env.REPOSITORY_DEPLOYER !== undefined
-          ? [process.env.REPOSITORY_DEPLOYER]
-          : [],
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
       gasPrice: 12000000000,
     },
     polygon: {
       url: process.env.POLYGON_URL || "https://polygon.drpc.org",
       chainId: 137,
       accounts:
-        process.env.REPOSITORY_DEPLOYER !== undefined
-          ? [process.env.REPOSITORY_DEPLOYER]
-          : [],
-      gasPrice: 120000000000,
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+      gasPrice: 200000000000,
     },
     base: {
       chainId: 8453,
       url: process.env.BASE_URL || "https://developer-access-mainnet.base.org",
       accounts:
-        process.env.REPOSITORY_DEPLOYER !== undefined
-          ? [process.env.REPOSITORY_DEPLOYER]
-          : [],
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+      gasPrice: 10000000,
     },
     astar: {
       url: process.env.ASTAR_URL || "https://evm.astar.network",
       chainId: 592,
       accounts:
-        process.env.REPOSITORY_DEPLOYER !== undefined
-          ? [process.env.REPOSITORY_DEPLOYER]
-          : [],
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
     },
   },
   etherscan: {
