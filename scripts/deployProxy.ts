@@ -1,13 +1,21 @@
-import { bytecode } from "../artifacts/contracts/AttributesRepository.sol/AttributesRepository.json";
+import { bytecode } from "../artifacts/contracts/EmoteRepository.sol/EmoteRepository.json";
 import { ethers, run } from "hardhat";
-import { Signer } from "ethers";
+import { Wallet } from "ethers";
 import { delay } from "@nomiclabs/hardhat-etherscan/dist/src/etherscan/EtherscanService";
 
 async function main() {
   console.log("Deploying DeployProxy...");
-  const accounts: Signer[] = await ethers.getSigners();
-  const deployer = accounts[0];
+  const prefundedAddress = (await ethers.getSigners())[0];
+  const deployer = new Wallet(
+    process.env.REPOSITORY_DEPLOYER || "",
+    prefundedAddress.provider
+  );
   console.log(`Deployer Address: ${await deployer.getAddress()}`);
+
+  await prefundedAddress.sendTransaction({
+    to: deployer.address,
+    value: ethers.utils.parseEther("1.0"),
+  });
 
   const DeployProxy = await ethers.getContractFactory("DeployProxy");
   const deployProxy = await DeployProxy.connect(deployer).deploy(); // Used for the networks where the deploy proxy is not deployed to
@@ -18,7 +26,7 @@ async function main() {
 
   const initCode = bytecode;
 
-  const saltHex = ethers.utils.id("7801454");
+  const saltHex = ethers.utils.id("73968130");
 
   const repositoryDeploy = await deployProxy
     .connect(deployer)

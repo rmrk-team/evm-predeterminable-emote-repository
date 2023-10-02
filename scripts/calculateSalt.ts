@@ -33,20 +33,17 @@ async function main() {
 
   // // This is used to find the saltHex that will generate the create2 address that starts with 0xA77B75
   let saltHex = ethers.utils.id("0");
-  // // i used to generate the saltHex resulting in 0xA77B75d87e29F0DA32b27566A375574Efc193cD5 is 7801454
-  // // The saltHex is generated using ethers.utils.id(i.toString())
-  // // The saltHex is 0xaac49629c7d45e9387df9a6bf21aacf972f60c8650ed9ce4a4da9477f6321097
-  for (let i = 0; i < 1000000000; i++) {
-    // console.log(`Salt: ${saltHex}`);
+  // // i used to generate the saltHex resulting in 0x311073558990afC92E42C966EEAEa3018251c01d is 73968130
+  for (let i = 0; i < 10000000; i++) {
     const create2Addr = await create2Address(
       deployProxy.address,
       saltHex,
       initCode
     );
-    if (i % 10000 === 0) {
+    if (i % 100000 === 0) {
       console.log(`i is: ${i}`);
     }
-    if (create2Addr.slice(2, 9).toUpperCase() === "311735") {
+    if (create2Addr.slice(2, 9).toUpperCase() === "3110735") {
       console.log("Found!");
       console.log(`Salt: ${saltHex}`);
       console.log(`Precomputed create2 Address: ${create2Addr}`);
@@ -64,7 +61,7 @@ async function main() {
 
   const repositoryAddress = transactionReceipt.events[0].args[0];
 
-  console.log(`Deployed AttributesRepository to: ${repositoryAddress}`);
+  console.log(`Deployed EmoteRepository to: ${repositoryAddress}`);
 }
 
 main().catch((error) => {
